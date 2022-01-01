@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('posts', [                                  //finally, pass the new objects to the view
+        'posts' => Post::all()
+    ]);
 });
+
+Route::get('post/{post}', function ($id) {
+
+    // $post = Post::findOrFail($slug);
+    // ddd($post);
+    return view("post", [
+        'post' => Post::findOrFail($id),
+    ]);
+    
+});
+
