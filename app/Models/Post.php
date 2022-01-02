@@ -15,6 +15,8 @@ class Post extends Model
         'title', 'slug', 'excerpt', 'body', 'category_id'
     ];
 
+    protected $with = ['category', 'author'];
+
     // public function getRouteKeyName() // change the default column that will be used for routing in web.php. Default is 'id'.
     // {
     //     return 'slug';
@@ -25,8 +27,8 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
