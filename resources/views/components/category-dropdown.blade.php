@@ -9,11 +9,11 @@
         </button>
     </x-slot>
 
-    <x-dropdown-item href="{{ url('/') }}" :active="request()->routeIs('home')">All Categories</x-dropdown-item>
+    <x-dropdown-item href="{{ url('/?') }}{{ http_build_query(request()->except('category', 'page')) }}" :active="request()->routeIs('home')">All Categories</x-dropdown-item>
     {{-- <x-dropdown-item href="{{ url('/') }}">All Categories</x-dropdown-item> //Alternative way to link to home page --}}
     @foreach ($categories as $category)
         <x-dropdown-item 
-        href="{{ url('/?category='.$category->slug) }}&{{ http_build_query(request()->except('category')) }}" 
+        href="{{ url('/?category='.$category->slug) }}&{{ http_build_query(request()->except('category', 'page')) }}" 
             {{-- :active="isset($currentCategory) && $currentCategory->is($category)"  // Alternative way to find which category is the current one --}}
             :active="request()->is('categories/'.$category->slug)">
             {{ ucwords($category->name) }}</x-dropdown-item>
