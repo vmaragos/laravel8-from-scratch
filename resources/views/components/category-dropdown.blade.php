@@ -13,9 +13,9 @@
     {{-- <x-dropdown-item href="{{ url('/') }}">All Categories</x-dropdown-item> //Alternative way to link to home page --}}
     @foreach ($categories as $category)
         <x-dropdown-item 
-        href="{{ url('/?category='.$category->slug) }}" 
+        href="{{ url('/?category='.$category->slug) }}&{{ http_build_query(request()->except('category')) }}" 
             {{-- :active="isset($currentCategory) && $currentCategory->is($category)"  // Alternative way to find which category is the current one --}}
-            :active="request()->is('categories/'.$category->slug)"
-            >{{ ucwords($category->name) }}</x-dropdown-item>
+            :active="request()->is('categories/'.$category->slug)">
+            {{ ucwords($category->name) }}</x-dropdown-item>
     @endforeach
 </x-dropdown>
