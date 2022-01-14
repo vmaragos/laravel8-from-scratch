@@ -9,12 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [''];
-
-    protected $fillable = [
-        'title', 'slug', 'excerpt', 'body', 'category_id'
-    ];
-
     protected $with = ['category', 'author'];
 
     // public function getRouteKeyName() // change the default column that will be used for routing in web.php. Default is 'id'.
