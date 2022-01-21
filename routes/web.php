@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -17,18 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+
+
 Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-// Not needed anymore
-// Route::get('authors/{author:username}', function (User $author){
-//     return view('posts.index', [
-//         'posts' => $author->posts,
-//     ]);
-// });
-
 Route::post('posts/{post:slug}/comment', [PostCommentController::class, 'store'])->middleware('auth');
+
+Route::post('newsletter', NewsletterController::class);
 
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 
